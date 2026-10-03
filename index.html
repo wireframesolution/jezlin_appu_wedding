@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jezzlin & Appu - Royal Engagement Invitation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display, Great Vibes, Cormorant Garamond, and Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        blush: {
+                            50: '#fcf6f4',
+                            100: '#f8ece8',
+                            200: '#f2ded7',
+                            300: '#e5b8ae',
+                            800: '#7a312e',
+                            900: '#5a2220',
+                        },
+                        gold: {
+                            100: '#fbf7eb',
+                            200: '#f3e6c3',
+                            300: '#e5cd8d',
+                            400: '#d4af37',
+                            500: '#c5a059',
+                            600: '#a8853f',
+                            700: '#8c6d2d',
+                            800: '#695120'
+                        },
+                        cream: '#fffefb',
+                        sepia: '#3d3129'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #fcf9f5;
+            color: #3d3129;
+            font-family: 'Montserrat', sans-serif;
+            background-image: radial-gradient(#d4af37 0.6px, transparent 0.6px), radial-gradient(#d4af37 0.6px, #fcf9f5 0.6px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+        .elegant-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+        .royal-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fefcf9 50%, #fdf6f0 100%);
+            border: 2px solid #d4af37;
+            box-shadow: 0 25px 60px -15px rgba(197, 160, 89, 0.35), inset 0 0 80px rgba(197, 160, 89, 0.08);
+            position: relative;
+        }
+        .royal-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.6);
+            pointer-events: none;
+            border-radius: 0.75rem;
+        }
+        @keyframes floatPetal {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.9; }
+            85% { opacity: 0.9; }
+            100% { transform: translateY(105vh) translateX(60px) rotate(360deg); opacity: 0; }
+        }
+        .petal {
+            position: fixed;
+            top: -10vh;
+            background: radial-gradient(circle at 30% 30%, #f7d5cc, #e5a89b);
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 40;
+            box-shadow: 0 0 10px rgba(229, 168, 155, 0.4);
+            animation: floatPetal linear infinite;
+        }
+        .glow-gold {
+            text-shadow: 0 2px 20px rgba(197, 160, 89, 0.4);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #8c6d2d 0%, #d4af37 50%, #695120 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 relative overflow-x-hidden">
+
+    <div id="petal-container"></div>
+    <script>
+        const container = document.getElementById('petal-container');
+        for (let i = 0; i < 22; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = (Math.random() * 14 + 10) + 'px';
+            petal.style.height = (Math.random() * 20 + 14) + 'px';
+            petal.style.animationDuration = (Math.random() * 7 + 6) + 's';
+            petal.style.animationDelay = (Math.random() * 6) + 's';
+            container.appendChild(petal);
+        }
+    </script>
+
+    <div class="fixed top-4 right-4 z-50 flex items-center gap-2.5">
+        <!-- Language Switcher Dropdown -->
+        <div class="glass-btn px-3 py-2 rounded-full flex items-center gap-2 text-xs text-gold-800 font-semibold shadow-lg">
+            <i class="fa-solid fa-globe text-gold-600"></i>
+            <select id="language-select" onchange="changeLanguage(this.value)" class="bg-transparent border-none text-xs text-gold-900 font-bold focus:outline-none cursor-pointer">
+                <option value="en">English</option>
+                <option value="ml">മലയാളം</option>
+            </select>
+        </div>
+        <button id="audio-control" class="glass-btn px-4 py-2.5 rounded-full cursor-pointer hover:bg-gold-500/10 transition flex items-center gap-2 text-xs text-gold-800 font-semibold shadow-lg">
+            <i id="audio-icon" class="fa-solid fa-music text-sm text-gold-600"></i>
+            <span id="audio-text" class="hidden sm:inline" data-en="Play Romantic Music 🎵" data-ml="റൊമാന്റിക് സംഗീതം 🎵">Play Romantic Music 🎵</span>
+            <audio id="bg-music" loop crossorigin="anonymous" preload="auto">
+                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-ragtime-112187.mp3" type="audio/mpeg">
+            </audio>
+        </button>
+    </div>
+
+    <main class="w-full max-w-2xl royal-card rounded-2xl p-6 sm:p-12 my-6 relative shadow-2xl">
+
+        <!-- Header Crest -->
+        <div class="text-center mb-8 relative">
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-gold-500/30 text-5xl pointer-events-none">
+                <i class="fa-solid fa-pagoda"></i>
+            </div>
+            <div class="flex justify-center items-center gap-3 text-gold-600 mb-2.5">
+                <i class="fa-solid fa-cross text-2xl gold-gradient-text"></i>
+            </div>
+            <div class="text-[11px] uppercase tracking-[0.35em] text-gold-700 font-bold mb-3" data-en="With immense joy and gratitude" data-ml="അതീവ സന്തോഷത്തോടും കൃതജ്ഞതയോടും കൂടി">With immense joy and gratitude</div>
+            <p class="script-font italic text-3xl sm:text-4xl text-blush-900 glow-gold" data-en='"Two hearts, two families, one beautiful beginning..."' data-ml='"രണ്ട് ഹൃദയങ്ങൾ, രണ്ട് കുടുംബങ്ങൾ, ഒരു മനോഹരമായ തുടക്കം..."'>"Two hearts, two families, one beautiful beginning..."</p>
+            <div class="flex justify-center items-center gap-3 mt-4 text-gold-500">
+                <span class="h-[1px] w-20 bg-gradient-to-r from-transparent to-gold-400"></span>
+                <i class="fa-solid fa-heart text-xs text-blush-800 animate-pulse"></i>
+                <span class="h-[1px] w-20 bg-gradient-to-l from-transparent to-gold-400"></span>
+            </div>
+            <p class="text-xs sm:text-sm text-sepia/75 mt-4 max-w-md mx-auto font-medium" data-en="We cordially invite you to join us in celebrating the engagement of" data-ml="ഇതുവഴി നിങ്ങളെ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു, ഇവരുടെ വിവാഹനിശ്ചയ ചടങ്ങിലേക്ക്">
+                We cordially invite you to join us in celebrating the engagement of
+            </p>
+        </div>
+
+        <div class="text-center my-8 space-y-6">
+            <div class="p-4 rounded-2xl bg-white/70 border border-gold-200/80 shadow-sm transition hover:shadow-md">
+                <h1 class="elegant-title text-4xl sm:text-6xl font-bold tracking-widest text-blush-900 drop-shadow-sm">JEZZLIN</h1>
+                <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-gold-700 mt-2 font-bold" data-en="Daughter of" data-ml="മകൾ">Daughter of</p>
+                <p class="font-serif italic text-base sm:text-lg text-sepia mt-1 font-medium">Joy Sebastian &amp; Jaimol Mathew</p>
+            </div>
+
+            <div class="flex items-center justify-center gap-4 text-gold-500 my-2">
+                <div class="h-[1px] flex-1 bg-gradient-to-r from-transparent via-gold-400 to-gold-500"></div>
+                <div class="w-12 h-12 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center shadow-sm">
+                    <span class="script-font text-3xl text-gold-700 font-bold">&amp;</span>
+                </div>
+                <div class="h-[1px] flex-1 bg-gradient-to-l from-transparent via-gold-400 to-gold-500"></div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/70 border border-gold-200/80 shadow-sm transition hover:shadow-md">
+                <h2 class="elegant-title text-4xl sm:text-6xl font-bold tracking-widest text-blush-900 drop-shadow-sm">APPU</h2>
+                <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-gold-700 mt-2 font-bold" data-en="Son of" data-ml="മകൻ">Son of</p>
+                <p class="font-serif italic text-base sm:text-lg text-sepia mt-1 font-medium">Baby T. O. (Late) &amp; Annamma Mathew</p>
+            </div>
+        </div>
+
+        <p class="text-center text-xs sm:text-sm italic text-sepia/85 my-6 max-w-md mx-auto font-medium leading-relaxed" data-en="as they take their first beautiful step towards a lifetime of love, faith, and togetherness." data-ml="സ്നേഹത്തിന്റെയും വിശ്വാസത്തിന്റെയും ഒരു പുതിയ ജീവിതത്തിലേക്ക് ഇവർ ചുവടുവെക്കുമ്പോൾ...">
+            as they take their first beautiful step towards a lifetime of love, faith, and togetherness.
+        </p>
+
+        <div class="my-8 bg-gradient-to-b from-blush-50 to-white border-2 border-gold-300/80 rounded-2xl p-6 sm:p-8 text-center shadow-lg relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 text-gold-500/10 text-9xl pointer-events-none">
+                <i class="fa-regular fa-calendar-days"></i>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 relative z-10">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center text-gold-700">
+                        <i class="fa-regular fa-calendar-days text-lg"></i>
+                    </div>
+                    <span class="elegant-title font-bold text-lg sm:text-xl tracking-wider text-blush-900" data-en="22<sup class='text-xs'>ND</sup> OCTOBER 2026" data-ml="2026 ഒക്ടോബർ 22">22<sup class="text-xs">ND</sup> OCTOBER 2026</span>
+                </div>
+                <div class="hidden sm:block text-gold-400 text-xl font-light">|</div>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gold-100 border border-gold-300 flex items-center justify-center text-gold-700">
+                        <i class="fa-regular fa-clock text-lg"></i>
+                    </div>
+                    <span class="elegant-title font-bold text-lg sm:text-xl tracking-wider text-blush-900" data-en="12:00 PM" data-ml="ഉച്ചയ്ക്ക് 12:00 മണിക്ക്">12:00 PM</span>
+                </div>
+            </div>
+
+            <!-- Countdown Timer Boxes -->
+            <div id="countdown" class="grid grid-cols-4 gap-3 mt-6 pt-5 border-t border-gold-200 max-w-md mx-auto text-center relative z-10">
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-gold-300 transform hover:scale-105 transition">
+                    <span id="days" class="elegant-title block text-2xl font-bold text-blush-900">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gold-700 font-bold" data-en="Days" data-ml="ദിവസങ്ങൾ">Days</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-gold-300 transform hover:scale-105 transition">
+                    <span id="hours" class="elegant-title block text-2xl font-bold text-blush-900">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gold-700 font-bold" data-en="Hours" data-ml="മണിക്കൂർ">Hours</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-gold-300 transform hover:scale-105 transition">
+                    <span id="minutes" class="elegant-title block text-2xl font-bold text-blush-900">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gold-700 font-bold" data-en="Mins" data-ml="മിനിറ്റ്">Mins</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-gold-300 transform hover:scale-105 transition">
+                    <span id="seconds" class="elegant-title block text-2xl font-bold text-blush-900">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gold-700 font-bold" data-en="Secs" data-ml="സെക്കൻഡ്">Secs</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6 my-8">
+            <div class="bg-white p-6 sm:p-7 rounded-2xl border border-gold-300 shadow-md hover:shadow-xl transition text-center relative overflow-hidden group">
+                <div class="absolute -right-6 -bottom-6 text-gold-500/10 text-8xl group-hover:scale-110 transition duration-500 pointer-events-none">
+                    <i class="fa-solid fa-church"></i>
+                </div>
+                <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-blush-100 text-blush-900 mb-3 shadow-inner border border-blush-200">
+                    <i class="fa-solid fa-church text-gold-600 text-xl"></i>
+                </div>
+                <h3 class="elegant-title font-bold text-2xl sm:text-3xl text-blush-900" data-en="CHRIST THE KING CHURCH" data-ml="ക്രൈസ്റ്റ് ദി കിംഗ് പള്ളി">CHRIST THE KING CHURCH</h3>
+                <p class="text-xs sm:text-sm text-sepia/80 mt-1.5 font-medium" data-en="Ettumanoor, Kottayam" data-ml="ഏറ്റുമാനൂർ, കോട്ടയം">Ettumanoor, Kottayam</p>
+                <a href="https://maps.google.com/?q=Christ+The+King+Church+Ettumanoor+Kottayam" target="_blank" class="inline-flex items-center gap-2 mt-5 text-xs font-bold text-gold-800 bg-gold-100 hover:bg-gold-200 px-5 py-2.5 rounded-full transition shadow-sm border border-gold-300">
+                    <i class="fa-solid fa-map-location-dot text-gold-600"></i> <span data-en="View Location on Map" data-ml="മാപ്പിൽ കാണുക">View Location on Map</span>
+                </a>
+            </div>
+
+            <div class="bg-white p-6 sm:p-7 rounded-2xl border border-gold-300 shadow-md hover:shadow-xl transition text-center relative overflow-hidden group">
+                <div class="absolute -right-6 -bottom-6 text-gold-500/10 text-8xl group-hover:scale-110 transition duration-500 pointer-events-none">
+                    <i class="fa-solid fa-glass-cheers"></i>
+                </div>
+                <p class="text-xs italic text-sepia/70 mb-1.5 font-medium" data-en="Thereafter, Engagement Reception at" data-ml="തുടർന്ന് വിവാഹനിശ്ചയ സൽക്കാരം">Thereafter, Engagement Reception at</p>
+                <h3 class="elegant-title font-bold text-2xl sm:text-3xl text-blush-900" data-en="MANIMUTTOM CONVENTION CENTRE" data-ml="മണിമുറ്റം കൺവെൻഷൻ സെന്റർ">MANIMUTTOM CONVENTION CENTRE</h3>
+                <p class="text-xs sm:text-sm text-sepia/80 mt-1.5 font-medium" data-en="Ettumanoor Bypass Road" data-ml="ഏറ്റുമാനൂർ ബൈപാസ് റോഡ്">Ettumanoor Bypass Road</p>
+                <a href="https://maps.google.com/?q=Manimuttom+Convention+Centre+Ettumanoor" target="_blank" class="inline-flex items-center gap-2 mt-5 text-xs font-bold text-gold-800 bg-gold-100 hover:bg-gold-200 px-5 py-2.5 rounded-full transition shadow-sm border border-gold-300">
+                    <i class="fa-solid fa-map-location-dot text-gold-600"></i> <span data-en="View Location on Map" data-ml="മാപ്പിൽ കാണുക">View Location on Map</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="my-8 border-t border-b border-gold-300/60 py-8 text-center bg-gradient-to-r from-transparent via-blush-50/50 to-transparent">
+            <h4 class="elegant-title text-2xl sm:text-3xl font-bold text-blush-900 mb-2" data-en="Join Our Celebration" data-ml="ഞങ്ങളുടെ സന്തോഷത്തിൽ പങ്കുചേരൂ">Join Our Celebration</h4>
+            <p class="text-xs sm:text-sm text-sepia/80 mb-6 max-w-md mx-auto font-medium" data-en="Your gracious presence, love, and blessings will make this joyous occasion truly unforgettable." data-ml="നിങ്ങളുടെ സാനിധ്യവും സ്നേഹവും ആശംസകളും ഈ സുദിനം കൂടുതൽ ധന്യമാക്കുന്നു.">Your gracious presence, love, and blessings will make this joyous occasion truly unforgettable.</p>
+            
+            <button onclick="openRsvpModal()" class="bg-gradient-to-r from-blush-900 to-blush-800 hover:from-blush-800 hover:to-blush-900 text-white font-semibold text-xs sm:text-sm uppercase tracking-widest px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition transform hover:-translate-y-0.5 flex items-center gap-3 mx-auto">
+                <i class="fa-solid fa-envelope-open-text text-gold-300 text-base"></i> <span data-en="Send RSVP &amp; Wishes" data-ml="RSVP &amp; ആശംസകൾ അയക്കുക">Send RSVP &amp; Wishes</span>
+            </button>
+        </div>
+
+        <!-- Footer Compliments -->
+        <div class="text-center mt-6">
+            <p class="script-font text-3xl sm:text-4xl text-gold-700 mb-1" data-en="With love &amp; compliments from" data-ml="സ്നേഹാന്വേഷണങ്ങളോടെ">With love &amp; compliments from</p>
+            <p class="elegant-title font-bold text-lg sm:text-xl text-sepia tracking-wide">Sebastian, Jelitta, Jesto</p>
+            
+            <div class="flex justify-center items-center gap-5 mt-6 text-gold-500 text-base">
+                <i class="fa-solid fa-heart text-blush-800"></i>
+                <i class="fa-solid fa-dove text-gold-600 animate-bounce"></i>
+                <i class="fa-solid fa-heart text-blush-800"></i>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="rsvp-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border-2 border-gold-300 relative animate-[fadeIn_0.3s_ease-in-out]">
+            <button onclick="closeRsvpModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-blush-50 hover:bg-blush-100 flex items-center justify-center text-sepia/70 hover:text-blush-900 transition">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <h3 class="elegant-title text-2xl sm:text-3xl font-bold text-blush-900 text-center mb-1" data-en="RSVP &amp; Best Wishes" data-ml="RSVP &amp; ആശംസകൾ">RSVP &amp; Best Wishes</h3>
+            <p class="text-xs text-center text-sepia/70 mb-6 font-medium" data-en="Please let us know if you will be celebrating with us!" data-ml="ഈ മനോഹരമായ ചടങ്ങിൽ നിങ്ങൾ പങ്കെടുക്കുന്നുണ്ടോ എന്ന് അറിയിക്കുക!">Please let us know if you will be celebrating with us!</p>
+
+            <form id="rsvp-form" onsubmit="submitRsvp(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia/80 mb-1" data-en="Your Full Name" data-ml="നിങ്ങളുടെ മുഴുവൻ പേര്">Your Full Name</label>
+                    <input type="text" id="guest-name" required class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blush-800 bg-blush-50/40 font-medium" placeholder="e.g., John & Family">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia/80 mb-1" data-en="Will you attend?" data-ml="പങ്കെടുക്കുമോ?">Will you attend?</label>
+                    <select id="guest-attendance" class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blush-800 bg-blush-50/40 font-medium">
+                        <option value="Joyfully Attending" data-en="Joyfully Attending" data-ml="സന്തോഷത്തോടെ പങ്കെടുക്കും">Joyfully Attending</option>
+                        <option value="Regretfully Unable to Attend" data-en="Regretfully Unable to Attend" data-ml="പങ്കെടുക്കാൻ സാധ്യമല്ല">Regretfully Unable to Attend</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia/80 mb-1" data-en="Number of Guests (Family Count)" data-ml="അതിഥികളുടെ എണ്ണം (കുടുംബാംഗങ്ങൾ)">Number of Guests (Family Count)</label>
+                    <input type="number" id="guest-count" min="1" max="20" value="1" required class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blush-800 bg-blush-50/40 font-medium" placeholder="e.g., 2">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia/80 mb-1" data-en="Warm Wishes to the Couple" data-ml="വധൂവരന്മാർക്ക് ഹൃദ്യമായ ആശംസകൾ">Warm Wishes to the Couple</label>
+                    <textarea id="guest-wishes" rows="3" class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blush-800 bg-blush-50/40 font-medium" placeholder="Write your heartfelt message here..."></textarea>
+                </div>
+                <button type="submit" id="rsvp-submit-btn" class="w-full bg-gradient-to-r from-blush-900 to-blush-800 hover:from-blush-800 hover:to-blush-900 text-white font-semibold text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg transition" data-en="Send Response" data-ml="മറുപടി അയക്കുക">
+                    Send Response
+                </button>
+            </form>
+            
+            <div id="rsvp-success" class="hidden text-center py-12">
+                <div class="text-gold-600 text-6xl mb-3"><i class="fa-solid fa-circle-check"></i></div>
+                <h4 class="elegant-title text-2xl font-bold text-blush-900" data-en="Thank You!" data-ml="നന്ദി!">Thank You!</h4>
+                <p class="text-xs text-sepia/80 mt-1.5 font-medium" data-en="Your response and wishes have been successfully recorded." data-ml="നിങ്ങളുടെ മറുപടിയും ആശംസകളും വിജയകരമായി രേഖപ്പെടുത്തിയിരിക്കുന്നു.">Your response and wishes have been successfully recorded.</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Google Sheet: paste the Apps Script Web App URL (see google-sheet-rsvp.gs) ending in /exec
+        const SHEET_WEBHOOK_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
+
+        // Language Switcher Logic
+        window.changeLanguage = function(lang) {
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else if (el.tagName === 'OPTION') {
+                        el.innerText = text;
+                    } else {
+                        el.innerHTML = text;
+                    }
+                }
+            });
+        };
+
+        // Countdown Timer Logic
+        const weddingDate = new Date("October 22, 2026 12:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-blush-900 font-bold elegant-title text-lg'>The Wedding Day is Here!</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Audio Toggle with Reliable Playback
+        const audioControl = document.getElementById('audio-control');
+        const bgMusic = document.getElementById('bg-music');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioText = document.getElementById('audio-text');
+        let isPlaying = false;
+
+        audioControl.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                audioIcon.className = "fa-solid fa-music text-sm text-gold-600";
+                const lang = document.getElementById('language-select').value;
+                audioText.innerText = lang === 'ml' ? "റൊമാന്റിക് സംഗീതം 🎵" : "Play Romantic Music 🎵";
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    audioIcon.className = "fa-solid fa-volume-high text-sm text-blush-900 animate-pulse";
+                    const lang = document.getElementById('language-select').value;
+                    audioText.innerText = lang === 'ml' ? "സംഗീതം പ്ലേ ചെയ്യുന്നു 🎶" : "Music Playing 🎶";
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log("Audio play blocked by browser policy:", e);
+                    const lang = document.getElementById('language-select').value;
+                    audioText.innerText = lang === 'ml' ? "വീണ്ടും ടാപ്പ് ചെയ്യുക 🎵" : "Tap again to play 🎵";
+                });
+            }
+        });
+
+        // Modal Controls
+        window.openRsvpModal = function() {
+            document.getElementById('rsvp-modal').classList.remove('hidden');
+        }
+        window.closeRsvpModal = function() {
+            document.getElementById('rsvp-modal').classList.add('hidden');
+            document.getElementById('rsvp-form').reset();
+            document.getElementById('rsvp-form').classList.remove('hidden');
+            document.getElementById('rsvp-success').classList.add('hidden');
+        }
+        window.submitRsvp = async function(event) {
+            event.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const attendance = document.getElementById('guest-attendance').value;
+            const count = parseInt(document.getElementById('guest-count').value) || 1;
+            const wishes = document.getElementById('guest-wishes').value;
+
+            const newEntry = {
+                name,
+                attendance,
+                count,
+                wishes,
+                timestamp: new Date().toISOString()
+            };
+
+            const submitBtn = document.getElementById('rsvp-submit-btn');
+            const lang = document.getElementById('language-select').value;
+            submitBtn.innerText = lang === 'ml' ? "അയക്കുന്നു..." : "Sending...";
+            submitBtn.disabled = true;
+
+            try {
+                if (SHEET_WEBHOOK_URL.startsWith("YOUR_")) throw new Error("SHEET_WEBHOOK_URL is not configured");
+                // text/plain + no-cors avoids a CORS preflight, which Apps Script doesn't answer.
+                // The response is opaque, so only network failures are caught here.
+                await fetch(SHEET_WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(newEntry)
+                });
+            } catch (err) {
+                console.error("RSVP save failed:", err);
+                alert(lang === 'ml' ? "ക്ഷമിക്കണം, മറുപടി അയക്കാൻ കഴിഞ്ഞില്ല. വീണ്ടും ശ്രമിക്കുക." : "Sorry, your RSVP could not be sent. Please try again.");
+                submitBtn.innerText = lang === 'ml' ? "മറുപടി അയക്കുക" : "Send Response";
+                submitBtn.disabled = false;
+                return;
+            }
+
+            document.getElementById('rsvp-form').classList.add('hidden');
+            document.getElementById('rsvp-success').classList.remove('hidden');
+            setTimeout(() => {
+                closeRsvpModal();
+                submitBtn.innerText = lang === 'ml' ? "മറുപടി അയക്കുക" : "Send Response";
+                submitBtn.disabled = false;
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
